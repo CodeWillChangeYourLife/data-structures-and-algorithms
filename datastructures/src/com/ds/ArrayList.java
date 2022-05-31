@@ -79,9 +79,9 @@ public class ArrayList<E> {
             return;
         }
         //selection sort algorithm
-        for (int i = 0; i < elements.length; i++) {
+        for (int i = 0; i < index; i++) {
             int min = i;
-            for (int j = i + 1; j < elements.length; j++) {
+            for (int j = i + 1; j < index; j++) {
                 if ((int) elements[j] < (int) elements[min]) {
                     min = j;
                 }
@@ -131,6 +131,8 @@ public class ArrayList<E> {
         list.removeAt(3);
         list.displayArray();
         list.replaceAt(1, 300);
+        list.displayArray();
+        list.sort();
         list.displayArray();
 
     }
