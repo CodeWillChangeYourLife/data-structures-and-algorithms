@@ -135,5 +135,13 @@ public class LinkedList<K> {
         ll.replaceAt(2, 300);
         ll.display();
         ll.size();
+        System.out.println("Adding");
+        for(int i=0;i<20000000;i++){
+            ll.add(i);
+        }
+        
+        System.out.println("Ended");
+
+        ll.display();
     }
 }
