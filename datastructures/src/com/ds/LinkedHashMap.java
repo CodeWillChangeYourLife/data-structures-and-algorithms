@@ -166,7 +166,7 @@ public class LinkedHashMap<K, V> {
         lm.put(40, "khammam");
         lm.put(30, "andhrapradesh");
 
-        lm.put(20, "kokila");
+        lm.put(20, "Hcl");
 
         lm.put(30, "tamilnadu");
 

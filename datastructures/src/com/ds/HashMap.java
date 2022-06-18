@@ -144,8 +144,8 @@ public class HashMap<K, V> {
 
         ma.put(10, "Hari");
         ma.put(20, "HariNadh");
-        ma.put(30, "Kokila");
-        ma.put(40, "Kokila Shankar");
+        ma.put(30, "ABC");
+        ma.put(40, "Def");
 
         System.out.println("added");
 
