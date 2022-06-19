@@ -12,43 +12,41 @@ public class ThreeSumTripletsBetterApproach {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
-
-        if (nums.length == 0 || nums.length == 1) {
+        if(nums.length == 0 || nums.length == 1){
             return new ArrayList<List<Integer>>();
         }
 
         List<List<Integer>> list = new ArrayList<>();
-        HashSet set = new HashSet();
+        HashSet<List<Integer>> set = new HashSet<>();
 
         Arrays.sort(nums);
 
-        for (int i = 0; i < nums.length; i++) {
+        for(int i=0;i<nums.length;i++){
 
             int requiredValue = -(nums[i]);
 
-            int left = i + 1;
-            int right = nums.length - 1;
+            int left = i+1;
+            int right = nums.length-1;
 
-            if (i > 1) {
-                if (nums[i - 1] == nums[i]) {
+            if(i>1){
+                if(nums[i-1] == nums[i]){
                     continue;
                 }
             }
             List<Integer> ll = null;
-            while (left < right) {
-                if (nums[left] + nums[right] == requiredValue) {
+            while(left<right){
+                if(nums[left]+nums[right] == requiredValue){
                     ll = new ArrayList<>();
                     ll.add(nums[i]);
                     ll.add(nums[left]);
                     ll.add(nums[right]);
-                    if (!set.contains(ll)) {
-                        set.add(ll);
-                    }
+                    set.add(ll);
                     left++;
                     right--;
-                } else if (nums[left] + nums[right] > requiredValue) {
+                }
+                else if(nums[left]+nums[right]>requiredValue){
                     right--;
-                } else if (nums[left] + nums[right] < requiredValue) {
+                }else if(nums[left]+nums[right]<requiredValue){
                     left++;
                 }
             }
