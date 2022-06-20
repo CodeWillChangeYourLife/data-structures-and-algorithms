@@ -28,11 +28,6 @@ public class ThreeSumTripletsBetterApproach {
             int left = i+1;
             int right = nums.length-1;
 
-            if(i>1){
-                if(nums[i-1] == nums[i]){
-                    continue;
-                }
-            }
             List<Integer> ll = null;
             while(left<right){
                 if(nums[left]+nums[right] == requiredValue){
