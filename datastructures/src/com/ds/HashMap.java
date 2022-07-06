@@ -127,8 +127,8 @@ public class HashMap<K, V> {
         HashMap<Integer, String> map = new HashMap<>();
         map.put(10, "Hari");
         map.put(20, "HariNadh");
-        map.put(30, "Kokila");
-        map.put(40, "Kokila Shankar");
+        map.put(30, "Bhadrachalam");
+        map.put(40, "Khammam");
 
         map.display();
 
