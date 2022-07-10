@@ -30,7 +30,7 @@ public class ConvertMatrixShellToOneDArray {
 
         //lw
         for (int i = minR, j = minC; i <= maxR; i++) {
-            str[index] = arr[i][minC];
+            str[index] = arr[i][j];
             index++;
         }
         minC++;
