@@ -72,7 +72,7 @@ public class MyLinkedList<E> {
         if (head == null) {
             System.out.println("Linked list is empty");
             return;
-        } else if (index < 0 || index > size) {
+        } else if (index < 0 || index >= size) {
             System.out.println("Invalid Index is received");
             return;
         } else {
@@ -155,7 +155,7 @@ public class MyLinkedList<E> {
         ll.removeFirst();
         ll.displayLinkedList();
         ll.size();
-        ll.getValueAt(-9);
+        ll.getValueAt(4);
         ll.getFirst();
     }
 }
