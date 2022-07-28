@@ -11,6 +11,9 @@ public class LinkedListInterviewQuestions {
         //Interview Q1 Add First In LinkedList
         ll.addFirst(40);
         ll.display();
+        //Interview Q2 Add Last In LinkedList
+        ll.addLast(50);
+        ll.display();
     }
 }
 
@@ -52,6 +55,17 @@ class LinkedList<E> {
             head=currentNode;
         }
         size++;
+    }
+
+    void addLast(E inputData) {
+        Node currentNode = new Node(inputData,null);
+        if(head==null){
+            head=currentNode;
+            tail=currentNode;
+        }else{
+           tail.next=currentNode;
+           tail=currentNode;
+        }
     }
 
     class Node {
