@@ -8,11 +8,14 @@ public class LinkedListInterviewQuestions {
         ll.add(20);
         ll.add(30);
         ll.display();
-        //Interview Q1 Add First In LinkedList
+        //Interview Q1 Add First Node In LinkedList
         ll.addFirst(40);
         ll.display();
-        //Interview Q2 Add Last In LinkedList
+        //Interview Q2 Add Last Node In LinkedList
         ll.addLast(50);
+        ll.display();
+        //Interview Q3 Remove First Node In LinkedList
+        ll.removeFirst();
         ll.display();
     }
 }
@@ -65,6 +68,18 @@ class LinkedList<E> {
         }else{
            tail.next=currentNode;
            tail=currentNode;
+        }
+    }
+
+
+    void removeFirst(){
+        if(head==null){
+            System.out.println("Lined List is Empty");
+            return;
+        }else{
+            Node nextNode=head.next;
+            head=nextNode;
+            size--;
         }
     }
 
