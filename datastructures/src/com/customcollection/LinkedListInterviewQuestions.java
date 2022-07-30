@@ -24,8 +24,8 @@ public class LinkedListInterviewQuestions {
 }
 
 class LinkedList<E> {
-    Node head=null;
-    Node tail=null;
+    Node head = null;
+    Node tail = null;
     int size = 0;
 
 
@@ -56,54 +56,54 @@ class LinkedList<E> {
     void addFirst(E e) {
 
         Node currentNode = new Node(e, null);
-        if(head == null){
+        if (head == null) {
             head = currentNode;
-            tail=currentNode;
-        }else{
-            currentNode.next=head;
-            head=currentNode;
+            tail = currentNode;
+        } else {
+            currentNode.next = head;
+            head = currentNode;
         }
         size++;
     }
 
     void addLast(E inputData) {
-        Node currentNode = new Node(inputData,null);
-        if(head==null){
-            head=currentNode;
-            tail=currentNode;
-        }else{
-           tail.next=currentNode;
-           tail=currentNode;
+        Node currentNode = new Node(inputData, null);
+        if (head == null) {
+            head = currentNode;
+            tail = currentNode;
+        } else {
+            tail.next = currentNode;
+            tail = currentNode;
         }
     }
 
-    void removeFirst(){
-        if(head==null){
+    void removeFirst() {
+        if (head == null) {
             System.out.println("Lined List is Empty");
             return;
-        }else{
-            Node nextNode=head.next;
-            head=nextNode;
+        } else {
+            Node nextNode = head.next;
+            head = nextNode;
             size--;
         }
     }
 
     void removeLast() {
 
-        if(head==null){
+        if (head == null) {
             System.out.println("Linked List Is empty Remove is not possible");
             return;
-        }else if(head.next==null){
-            head =null;
-            tail=null;
+        } else if (head.next == null) {
+            head = null;
+            tail = null;
             size--;
-        }else{
+        } else {
             Node temp = head;
-            while(temp.next.next!=null){
+            while (temp.next.next != null) {
                 temp = temp.next;
             }
-            temp.next=null;
-            tail=temp;
+            temp.next = null;
+            tail = temp;
             size--;
         }
     }
