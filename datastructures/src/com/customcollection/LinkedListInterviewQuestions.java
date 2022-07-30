@@ -17,6 +17,9 @@ public class LinkedListInterviewQuestions {
         //Interview Q3 Remove First Node In LinkedList
         ll.removeFirst();
         ll.display();
+        //Interview Q4 Remove Last Node In LinkedList
+        ll.removeLast();
+        ll.display();
     }
 }
 
@@ -40,11 +43,14 @@ class LinkedList<E> {
 
     void display() {
         Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " ");
+        int no = 100;
+        while (temp.next != null) {
+            System.out.print("| " + temp.data + " | " + no++ + " -|-" + "-->");
             temp = temp.next;
         }
+        System.out.print("| " + temp.data + " | " + " null |");
         System.out.println();
+        System.out.println("-------------------------------------------------------------------");
     }
 
     void addFirst(E e) {
@@ -71,7 +77,6 @@ class LinkedList<E> {
         }
     }
 
-
     void removeFirst(){
         if(head==null){
             System.out.println("Lined List is Empty");
@@ -79,6 +84,26 @@ class LinkedList<E> {
         }else{
             Node nextNode=head.next;
             head=nextNode;
+            size--;
+        }
+    }
+
+    void removeLast() {
+
+        if(head==null){
+            System.out.println("Linked List Is empty Remove is not possible");
+            return;
+        }else if(head.next==null){
+            head =null;
+            tail=null;
+            size--;
+        }else{
+            Node temp = head;
+            while(temp.next.next!=null){
+                temp = temp.next;
+            }
+            temp.next=null;
+            tail=temp;
             size--;
         }
     }
