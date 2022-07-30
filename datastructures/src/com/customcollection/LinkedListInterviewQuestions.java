@@ -20,6 +20,11 @@ public class LinkedListInterviewQuestions {
         //Interview Q4 Remove Last Node In LinkedList
         ll.removeLast();
         ll.display();
+        ll.add(40);
+        ll.display();
+        //Interview Q5 Add Node At Specific Index In LinkedList
+        ll.addNodeAt(0, 60);
+        ll.display();
     }
 }
 
@@ -106,6 +111,30 @@ class LinkedList<E> {
             tail = temp;
             size--;
         }
+    }
+
+    void addNodeAt(int targetIndex, E data) {
+        if (targetIndex < 0) {
+            System.out.println("Invalid Index");
+            return;
+        } else if (targetIndex >= size) {
+            System.out.println("Invalid Index");
+            return;
+        }
+        Node n1 = new Node(data, null);
+        if (targetIndex == 0) {
+            n1.next = head;
+            head = n1;
+        } else {
+            Node current = head;
+            for (int i = 0; i < targetIndex - 1; i++) {
+                current = current.next;
+            }
+            Node backupNode = current.next;
+            current.next = n1;
+            n1.next = backupNode;
+        }
+        size++;
     }
 
     class Node {
