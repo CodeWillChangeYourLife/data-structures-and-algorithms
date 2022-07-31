@@ -41,9 +41,10 @@ class LinkedList<E> {
     Node tail = null;
     int size = 0;
 
-    void size(){
+    void size() {
         System.out.println(size);
     }
+
     void add(E data) {
         Node newNode = new Node(data, null);
         if (head == null) {
@@ -178,24 +179,24 @@ class LinkedList<E> {
     }
 
     void reversLinkedList() {
-        if(head==null){
+        if (head == null) {
             System.out.println("LinkedList is empty");
             return;
-        }else if(head.next==null){
+        } else if (head.next == null) {
             System.out.println(head);
             return;
-        }else{
+        } else {
             Node current = head;
             Node previous = null;
             Node next = null;
             tail = head;
-            while(current!=null){
-                next=current.next;
-                current.next=previous;
-                previous=current;
-                current=next;
+            while (current != null) {
+                next = current.next;
+                current.next = previous;
+                previous = current;
+                current = next;
             }
-            head=previous;
+            head = previous;
         }
     }
 
