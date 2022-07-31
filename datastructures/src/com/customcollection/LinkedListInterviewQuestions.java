@@ -25,6 +25,9 @@ public class LinkedListInterviewQuestions {
         //Interview Q5 Add Node At Specific Index In LinkedList
         ll.addNodeAt(0, 60);
         ll.display();
+        //Interview Q6 Remove Node At Specific Index In LinkedList
+        ll.removeNodeAt(4);
+        ll.display();
     }
 }
 
@@ -33,7 +36,9 @@ class LinkedList<E> {
     Node tail = null;
     int size = 0;
 
-
+    void size(){
+        System.out.println(size);
+    }
     void add(E data) {
         Node newNode = new Node(data, null);
         if (head == null) {
@@ -80,6 +85,7 @@ class LinkedList<E> {
             tail.next = currentNode;
             tail = currentNode;
         }
+        size++;
     }
 
     void removeFirst() {
@@ -135,6 +141,35 @@ class LinkedList<E> {
             n1.next = backupNode;
         }
         size++;
+    }
+
+    void removeNodeAt(int index) {
+        if (index < 0) {
+            System.out.println("Invald Index");
+            return;
+        } else if (index >= size) {
+            System.out.println("Invalid Index");
+            return;
+        } else if (head == null) {
+            System.out.println("Linked List is empty");
+            return;
+        } else if (index == 0) {
+            Node node = head.next;
+            head = node;
+            size--;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            Node deleteNode = current.next;
+            Node backupNode = deleteNode.next;
+            current.next = backupNode;
+            if (index == size - 1) {
+                tail = current;
+            }
+            size--;
+        }
     }
 
     class Node {
