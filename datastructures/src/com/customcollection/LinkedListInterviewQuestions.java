@@ -28,6 +28,11 @@ public class LinkedListInterviewQuestions {
         //Interview Q6 Remove Node At Specific Index In LinkedList
         ll.removeNodeAt(4);
         ll.display();
+        //Interview Q7 Reverse a LinkedList in Iterative Approach
+        ll.reversLinkedList();
+        ll.display();
+        ll.addLast(65);
+        ll.display();
     }
 }
 
@@ -169,6 +174,28 @@ class LinkedList<E> {
                 tail = current;
             }
             size--;
+        }
+    }
+
+    void reversLinkedList() {
+        if(head==null){
+            System.out.println("LinkedList is empty");
+            return;
+        }else if(head.next==null){
+            System.out.println(head);
+            return;
+        }else{
+            Node current = head;
+            Node previous = null;
+            Node next = null;
+            tail = head;
+            while(current!=null){
+                next=current.next;
+                current.next=previous;
+                previous=current;
+                current=next;
+            }
+            head=previous;
         }
     }
 
