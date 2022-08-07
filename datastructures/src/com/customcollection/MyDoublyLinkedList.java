@@ -83,6 +83,51 @@ public class MyDoublyLinkedList<E> {
         size--;
     }
 
+    void removeAt(int index) {
+        if (index < 0 || index >= size) {
+            System.out.println("Invalid Index");
+            return;
+        } else if (first == null) {
+            System.out.println("List is empty");
+            return;
+        } else if (index == 0) {
+            removeFirst();
+        } else if (index == size - 1) {
+            removeLast();
+        } else {
+            Node temp = first;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+            temp.next.prev = temp;
+            size--;
+        }
+    }
+
+    void addAt(int index, E data) {
+        Node n1 = new Node(data);
+        if (first == null) {
+            first = n1;
+            last = n1;
+        } else if (index == 0) {
+            addFirst(data);
+        } else if (index == size - 1) {
+            add(data);
+        } else {
+            Node temp = first;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            Node previous = temp.next;
+            n1.next = previous;
+            previous.prev = n1;
+            temp.next = n1;
+            n1.prev = temp;
+            size++;
+        }
+    }
+
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> ll = new MyDoublyLinkedList<>();
         ll.add(10);
@@ -102,7 +147,13 @@ public class MyDoublyLinkedList<E> {
         ll.display();
         ll.removeLast();
         ll.display();
-        ll.add(3333);
+        ll.add(33);
+        ll.display();
+        ll.removeAt(5);
+        ll.display();
+        ll.add(55);
+        ll.display();
+        ll.addAt(2, 90);
         ll.display();
     }
 }
