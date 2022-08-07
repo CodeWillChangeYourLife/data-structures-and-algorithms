@@ -68,6 +68,20 @@ public class MyDoublyLinkedList<E> {
         size--;
     }
 
+    void removeLast() {
+        if (first == null) {
+            System.out.println("DoublyLinkedList is empty");
+            return;
+        } else if (first.next == null) {
+            first = null;
+            last = null;
+            size--;
+            return;
+        }
+        last = last.prev;
+        last.next = null;
+        size--;
+    }
 
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> ll = new MyDoublyLinkedList<>();
@@ -85,6 +99,10 @@ public class MyDoublyLinkedList<E> {
         ll.display();
         ll.size();
         ll.addFirst(200);
+        ll.display();
+        ll.removeLast();
+        ll.display();
+        ll.add(3333);
         ll.display();
     }
 }
