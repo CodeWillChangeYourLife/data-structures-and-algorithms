@@ -50,6 +50,25 @@ public class MyDoublyLinkedList<E> {
         System.out.println();
     }
 
+    void displayForward() {
+        Node temp = first;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    void displayBackward() {
+        Node temp = last;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.prev;
+        }
+        System.out.println();
+    }
+
     void size() {
         System.out.println(size);
     }
@@ -155,5 +174,7 @@ public class MyDoublyLinkedList<E> {
         ll.display();
         ll.addAt(2, 90);
         ll.display();
+        ll.displayForward();
+        ll.displayBackward();
     }
 }
