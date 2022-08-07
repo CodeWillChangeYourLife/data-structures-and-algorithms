@@ -28,6 +28,19 @@ public class MyDoublyLinkedList<E> {
         size++;
     }
 
+    void addFirst(E data) {
+        Node n1 = new Node(data);
+        if (first == null) {
+            first = n1;
+            last = n1;
+        } else {
+            n1.next = first;
+            first.prev = n1;
+            first = n1;
+        }
+        size++;
+    }
+
     void display() {
         Node temp = first;
         while (temp != null) {
@@ -36,9 +49,11 @@ public class MyDoublyLinkedList<E> {
         }
         System.out.println();
     }
-    void size(){
+
+    void size() {
         System.out.println(size);
     }
+
     public static void main(String[] args) {
         MyDoublyLinkedList<Integer> ll = new MyDoublyLinkedList<>();
         ll.add(10);
@@ -48,5 +63,7 @@ public class MyDoublyLinkedList<E> {
         ll.add(50);
         ll.display();
         ll.size();
+        ll.addFirst(100);
+        ll.display();
     }
 }
