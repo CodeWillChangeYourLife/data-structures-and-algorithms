@@ -1,18 +1,22 @@
 package com.customcollection;
 
-import java.util.HashMap;
+import java.awt.image.ReplicateScaleFilter;
 
 public class EqualsAndHashCode {
 
     public static void main(String[] args) {
         Employee e1 = new Employee(1, "a");
         Employee e2 = new Employee(2, "b");
-        Employee e3 = new Employee(1, "a");
+        Employee e3 = new Employee(3, "c");
+        Employee e4 = new Employee(4, "a");
 
         System.out.println(e1.hashCode());
         System.out.println(e2.hashCode());
         System.out.println(e3.hashCode());
-        System.out.println(e1.equals(e3));
+        System.out.println(e4.hashCode());
+
+        System.out.println(e1.equals(e2));
+        System.out.println(e1.equals(e4));
 
     }
 }
@@ -27,8 +31,8 @@ class Employee {
     }
 
     public int hashCode() {
-        int hashCode = this.empId + empName.hashCode();
-        return hashCode;
+        int hashNumber = this.empId + this.empName.hashCode();
+        return hashNumber;
     }
 
     public boolean equals(Object obj) {
@@ -36,8 +40,10 @@ class Employee {
             return false;
         } else if (this.getClass() != obj.getClass()) {
             return false;
+        } else {
+            Employee otherEmployee = (Employee) obj;
+
+            return this.empId == otherEmployee.empId && this.empName.equals(otherEmployee.empName);
         }
-        Employee otherEmployee = (Employee) obj;
-        return this.empId == otherEmployee.empId && this.empName.equals(otherEmployee.empName);
     }
 }
