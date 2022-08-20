@@ -54,18 +54,66 @@ public class MyCustomMap<K, V> {
         }
     }
 
+    V get(K key) {
+        if (key == null) {
+            return null;
+        }
+        int index = Math.abs(key.hashCode() % size);
+        if (table[index] == null) {
+            return null;
+        } else {
+            Entry temp = table[index];
+
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    return (V) temp.value;
+                }
+                temp = temp.next;
+            }
+        }
+        return null;
+    }
+
     void display() {
         for (int i = 0; i < table.length; i++) {
             if (table[i] != null) {
                 Entry temp = table[i];
 
                 while (temp != null) {
-                    System.out.print(i+"--"+temp.key + "--" + temp.value + "  ");
+                    System.out.print(i + "--" + temp.key + "--" + temp.value + "  ");
                     temp = temp.next;
                 }
                 System.out.println();
             }
         }
+    }
+
+    boolean remove(K key) {
+        if (key == null) {
+            return false;
+        }
+        int index = Math.abs(key.hashCode() % size);
+        if (table[index] == null) {
+            return false;
+        } else {
+            Entry temp = table[index];
+            Entry prev = null;
+
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    if (prev == null) {
+                        table[index] = table[index].next;
+                        return true;
+                    } else {
+                        prev.next = temp.next;
+                        return true;
+                    }
+                }
+                prev = temp;
+                temp = temp.next;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -77,8 +125,11 @@ public class MyCustomMap<K, V> {
         map.put(23, 600);
 
         map.display();
-        map.put(35,900);
+        map.put(35, 900);
         System.out.println("-----------------------");
+        map.display();
+        System.out.println(map.get(30));
+        System.out.println(map.remove(21));
         map.display();
     }
 }
