@@ -1,0 +1,84 @@
+package com.customcollection;
+
+public class MyCustomMap<K, V> {
+    Entry[] table;
+    int size = 4;
+
+    class Entry<K, V> {
+        K key;
+        V value;
+        Entry next;
+
+        public Entry(K key, V value, Entry next) {
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    MyCustomMap() {
+        table = new Entry[size];
+    }
+
+    void put(K newKey, V newValue) {
+        if (newKey == null) {
+            return;
+        }
+        Entry entry = new Entry(newKey, newValue, null);
+
+        int index = Math.abs(newKey.hashCode() % size);
+
+        if (table[index] == null) {
+            table[index] = entry;
+            return;
+        } else {
+            Entry temp = table[index];
+            Entry prev = null;
+
+            while (temp != null) {
+                if (temp.key.equals(newKey)) {
+                    if (prev == null) {
+                        temp.value = newValue;
+                        return;
+                    } else {
+                        entry.next = temp.next;
+                        prev.next = entry;
+                        return;
+                    }
+                } else {
+                    prev = temp;
+                    temp = temp.next;
+                }
+            }
+            prev.next = entry;
+        }
+    }
+
+    void display() {
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] != null) {
+                Entry temp = table[i];
+
+                while (temp != null) {
+                    System.out.print(i+"--"+temp.key + "--" + temp.value + "  ");
+                    temp = temp.next;
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        MyCustomMap<Integer, Integer> map = new MyCustomMap<>();
+        map.put(21, 200);
+        map.put(30, 300);
+        map.put(31, 400);
+        map.put(35, 500);
+        map.put(23, 600);
+
+        map.display();
+        map.put(35,900);
+        System.out.println("-----------------------");
+        map.display();
+    }
+}
