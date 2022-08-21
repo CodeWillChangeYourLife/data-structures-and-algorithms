@@ -118,6 +118,26 @@ public class MyCustomMap<K, V> {
         }
     }
 
+    boolean contains(K key) {
+        if (key == null) {
+            return false;
+        }
+        int index = Math.abs(key.hashCode() % size);
+
+        if (table[index] == null) {
+            return false;
+        } else {
+            Entry temp = table[index];
+
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    return true;
+                }
+                temp = temp.next;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         MyCustomMap<Integer, Integer> map = new MyCustomMap<>();
@@ -137,5 +157,9 @@ public class MyCustomMap<K, V> {
         System.out.println(map.get(23));
         System.out.println(map.get(null));
         System.out.println(map.get(1000));
+        System.out.println(map.contains(30));
+        System.out.println(map.contains(null));
+        System.out.println(map.contains(100));
+
     }
 }
