@@ -74,6 +74,36 @@ public class MyCustomMap<K, V> {
         return null;
     }
 
+    boolean remove(K key) {
+        if (key == null) {
+            return false;
+        } else {
+            int index = Math.abs(key.hashCode() % size);
+            if (table[index] == null) {
+                return false;
+            } else {
+                Entry temp = table[index];
+                Entry prev = null;
+
+                while (temp != null) {
+                    if (temp.key.equals(key)) {
+                        if (prev == null) {
+                            table[index] = table[index].next;
+                            return true;
+                        } else {
+                            prev.next = temp.next;
+                            return true;
+                        }
+                    } else {
+                        prev=temp;
+                        temp = temp.next;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     void display() {
         for (int i = 0; i < table.length; i++) {
             if (table[i] != null) {
@@ -88,33 +118,6 @@ public class MyCustomMap<K, V> {
         }
     }
 
-    boolean remove(K key) {
-        if (key == null) {
-            return false;
-        }
-        int index = Math.abs(key.hashCode() % size);
-        if (table[index] == null) {
-            return false;
-        } else {
-            Entry temp = table[index];
-            Entry prev = null;
-
-            while (temp != null) {
-                if (temp.key.equals(key)) {
-                    if (prev == null) {
-                        table[index] = table[index].next;
-                        return true;
-                    } else {
-                        prev.next = temp.next;
-                        return true;
-                    }
-                }
-                prev = temp;
-                temp = temp.next;
-            }
-        }
-        return false;
-    }
 
     public static void main(String[] args) {
         MyCustomMap<Integer, Integer> map = new MyCustomMap<>();
@@ -128,8 +131,9 @@ public class MyCustomMap<K, V> {
         map.put(35, 900);
         System.out.println("-----------------------");
         map.display();
-        System.out.println(map.get(30));
-        System.out.println(map.remove(21));
+        System.out.println(map.remove(35));
+        System.out.println("-----");
         map.display();
+
     }
 }
