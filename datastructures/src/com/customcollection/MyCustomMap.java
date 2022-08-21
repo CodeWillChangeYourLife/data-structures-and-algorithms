@@ -1,5 +1,7 @@
 package com.customcollection;
 
+import java.util.Objects;
+
 public class MyCustomMap<K, V> {
     Entry[] table;
     int size = 4;
@@ -108,9 +110,8 @@ public class MyCustomMap<K, V> {
         for (int i = 0; i < table.length; i++) {
             if (table[i] != null) {
                 Entry temp = table[i];
-
                 while (temp != null) {
-                    System.out.print(i + "--" + temp.key + "--" + temp.value + "  ");
+                    System.out.print(temp.key + "--" + temp.value+" ");
                     temp = temp.next;
                 }
                 System.out.println();
@@ -161,5 +162,46 @@ public class MyCustomMap<K, V> {
         System.out.println(map.contains(null));
         System.out.println(map.contains(100));
 
+        Product p1 = new Product(1, "Mobile1");
+        Product p2 = new Product(2, "Laptop");
+        Product p3 = new Product(3, "Tv");
+        Product p4 = new Product(4, "Charger");
+        Product p5 = new Product(1, "Mobile1");
+
+        MyCustomMap<Product, Integer> productMap = new MyCustomMap<>();
+        productMap.put(p1, 100);
+        productMap.put(p2, 200);
+        productMap.put(p3, 300);
+        productMap.put(p4, 400);
+        productMap.put(p5, 500);
+        productMap.display();
+    }
+}
+
+class Product {
+    int productId;
+    String productName;
+
+    public Product(int productId, String productName) {
+        this.productId = productId;
+        this.productName = productName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId && productName.equals(product.productName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName);
+    }
+
+    @Override
+    public String toString() {
+        return "["+this.productId + " " + this.productName+"]";
     }
 }
