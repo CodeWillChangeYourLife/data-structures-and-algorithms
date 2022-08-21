@@ -57,18 +57,18 @@ public class MyCustomMap<K, V> {
     V get(K key) {
         if (key == null) {
             return null;
-        }
-        int index = Math.abs(key.hashCode() % size);
-        if (table[index] == null) {
-            return null;
         } else {
-            Entry temp = table[index];
-
-            while (temp != null) {
-                if (temp.key.equals(key)) {
-                    return (V) temp.value;
+            int index = Math.abs(key.hashCode() % size);
+            if (table[index] == null) {
+                return null;
+            } else {
+                Entry temp = table[index];
+                while (temp != null) {
+                    if (temp.key.equals(key)) {
+                        return (V) temp.value;
+                    }
+                    temp = temp.next;
                 }
-                temp = temp.next;
             }
         }
         return null;
@@ -95,7 +95,7 @@ public class MyCustomMap<K, V> {
                             return true;
                         }
                     } else {
-                        prev=temp;
+                        prev = temp;
                         temp = temp.next;
                     }
                 }
@@ -134,6 +134,8 @@ public class MyCustomMap<K, V> {
         System.out.println(map.remove(35));
         System.out.println("-----");
         map.display();
-
+        System.out.println(map.get(23));
+        System.out.println(map.get(null));
+        System.out.println(map.get(1000));
     }
 }
