@@ -21,6 +21,7 @@ public class GenericTreeConstructor {
         //step1 - Create a Stack with Node
         //step2 - traverse the input array
         //step3 - check each index value , if value = -1 , remove data from the stack, okavela -1 kadhu
+        // Node create chesi , ah node ki manam array nunchi read chesina data ni set cheyali
         // check stack is empty or not if it is empty assign the created node into root node , if
         // get the top node from the stack and get chesukunna node children ki mana node ni add cheyali
 
