@@ -15,8 +15,36 @@ public class GenericTreeConstructor {
         int[] arr = {10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, -1, -1, 40, 90, -1, -1, -1};
         Node root = null;
         root = constructTree(arr, root);
-
         displayTree(root);
+        int noOfNodes = countNoOfNodesInTree(root);
+        System.out.println(noOfNodes);
+    }
+
+    static int countNoOfNodesInTree(Node root) {
+        //step1 - first oka varible ni create chesi assign 0 as value
+        //step2 - input vochina root node ni children read chesi recursive ga countNoOfNodesInTree method ni call cheyali
+        //step3 - return chese mundu add +1 to the size
+
+        int size = 0;
+
+        for (Node cn : root.children) {
+            int cnSize = countNoOfNodesInTree(cn);
+            size = cnSize + size;
+        }
+        return size + 1;
+    }
+
+    static Node findMaxNode(Node root) {
+
+        Node currentMax = root;
+
+        for (Node node : root.children) {
+            Node cn = findMaxNode(node);
+            if (currentMax.data < cn.data) {
+                currentMax = cn;
+            }
+        }
+        return currentMax;
     }
 
     //data->children data
