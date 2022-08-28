@@ -14,10 +14,24 @@ public class GenericTreeConstructor {
         int data;
         int[] arr = {10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, -1, -1, 40, 90, -1, -1, -1};
         Node root = null;
-        constructTree(arr, null);
+        root = constructTree(arr, root);
+
+        displayTree(root);
+    }
+    //data->children data
+    static void displayTree(Node root){
+        System.out.print(root.data+" --> ");
+        for(Node children:root.children){
+            System.out.print(children.data+" ");
+        }
+        System.out.println();
+
+        for(Node children : root.children){
+            displayTree(children);
+        }
     }
 
-    static void constructTree(int[] array, Node root) {
+    static Node constructTree(int[] array, Node root) {
         //step1 - Create a Stack with Node
         //step2 - traverse the input array
         //step3 - check each index value , if value = -1 , remove data from the stack, okavela -1 kadhu
@@ -42,6 +56,7 @@ public class GenericTreeConstructor {
             }
         }
         System.out.println(stack.isEmpty());
+        return root;
     }
 }
 
