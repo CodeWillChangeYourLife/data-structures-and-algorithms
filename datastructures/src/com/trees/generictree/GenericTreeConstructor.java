@@ -18,15 +18,16 @@ public class GenericTreeConstructor {
 
         displayTree(root);
     }
+
     //data->children data
-    static void displayTree(Node root){
-        System.out.print(root.data+" --> ");
-        for(Node children:root.children){
-            System.out.print(children.data+" ");
+    static void displayTree(Node root) {
+        System.out.print(root.data + " --> ");
+        for (Node children : root.children) {
+            System.out.print(children.data + " ");
         }
         System.out.println();
 
-        for(Node children : root.children){
+        for (Node children : root.children) {
             displayTree(children);
         }
     }
