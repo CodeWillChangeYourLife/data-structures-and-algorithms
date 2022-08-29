@@ -12,12 +12,19 @@ public class GenericTreeConstructor {
 
     public static void main(String[] args) {
         int data;
-        int[] arr = {10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, -1, -1, 40, 90, -1, -1, -1};
+        int[] arr = {10, 20, 50, -1, 90, -1, -1, 30, 70, -1, 80, -1, -1, 40, 60, -1, -1, -1};
         Node root = null;
+        //Q1 Construct Generic Tree from the input array data
         root = constructTree(arr, root);
+
+        //Q2 Display a Constructed Generic Tree
         displayTree(root);
+        //Q3 Find node count in a Generic Tree
         int noOfNodes = countNoOfNodesInTree(root);
-        System.out.println(noOfNodes);
+        System.out.println("Number Of Nodes In Tree : " + noOfNodes);
+
+        Node maxNode = findMaxNode(root);
+        System.out.println("Max Node In A Tree : " + maxNode.data);
     }
 
     static int countNoOfNodesInTree(Node root) {
@@ -35,16 +42,25 @@ public class GenericTreeConstructor {
     }
 
     static Node findMaxNode(Node root) {
+        //step1- vochina root node ni max noda ga assume chesukovali
+        //step2- for each loop use chesi anni nodes traversa cheyali recursive ga
+        //step3 - for each loop lopala logic -> evry node data ni manam initial ga assume chesukunna
+        //maxNode data tho compare cheyali oka vela , manam assume chesukunna maxnode data kantey
+        // for each loop lo vochina node data ekkuva vuntey apudu foreach lo vunna node ni maxNoda
+        // ki assign cheyali,same stepa anni nodes ki follow avali
+        //Step4: Final ga maxNode ni return cheyali
 
-        Node currentMax = root;
+        //Code
+        //step1
+        Node maxNode = root;
 
-        for (Node node : root.children) {
-            Node cn = findMaxNode(node);
-            if (currentMax.data < cn.data) {
-                currentMax = cn;
+        for (Node child : root.children) {
+            Node currentMax = findMaxNode(child);
+            if (currentMax.data > maxNode.data) {
+                maxNode = currentMax;
             }
         }
-        return currentMax;
+        return maxNode;
     }
 
     //data->children data
@@ -88,5 +104,3 @@ public class GenericTreeConstructor {
         return root;
     }
 }
-
-
