@@ -25,6 +25,32 @@ public class GenericTreeConstructor {
 
         Node maxNode = findMaxNode(root);
         System.out.println("Max Node In A Tree : " + maxNode.data);
+
+        int treeHeight = findHeightOfTree(root);
+        System.out.println("Tree Height : " + treeHeight);
+
+        treeTraversal(root);
+    }
+
+    static void treeTraversal(Node rootNode) {
+        System.out.println("pre node : " + rootNode.data);
+        for (Node child : rootNode.children) {
+            System.out.println("pre edge nodes : " + rootNode.data + "-->" + child.data);
+            treeTraversal(child);
+            System.out.println("post egde nodes :" + child.data + "-->" + rootNode.data);
+        }
+        System.out.println("post node : " + rootNode.data);
+    }
+
+    static int findHeightOfTree(Node root) {
+        int height = -1;
+
+        for (Node children : root.children) {
+            int newHeight = findHeightOfTree(children);
+            height = Math.max(height, newHeight);
+        }
+        height = height + 1;
+        return height;
     }
 
     static int countNoOfNodesInTree(Node root) {
