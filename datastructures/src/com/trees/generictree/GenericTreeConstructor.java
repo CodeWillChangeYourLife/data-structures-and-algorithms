@@ -1,7 +1,8 @@
 package com.trees.generictree;
 
-import java.util.ArrayList;
-import java.util.Stack;
+import com.customcollection.MyQueue;
+
+import java.util.*;
 
 public class GenericTreeConstructor {
 
@@ -19,17 +20,48 @@ public class GenericTreeConstructor {
 
         //Q2 Display a Constructed Generic Tree
         displayTree(root);
+
         //Q3 Find node count in a Generic Tree
         int noOfNodes = countNoOfNodesInTree(root);
         System.out.println("Number Of Nodes In Tree : " + noOfNodes);
 
+        //Q4 Find the max node in a tree
         Node maxNode = findMaxNode(root);
         System.out.println("Max Node In A Tree : " + maxNode.data);
 
+        //Q5 Find the height of a given tree
         int treeHeight = findHeightOfTree(root);
         System.out.println("Tree Height : " + treeHeight);
 
+        //Q6 Traverse the tree with pre node, post node , pre edge nodes and post edge nodes
         treeTraversal(root);
+
+
+        //Q7 LevelOrder Traversal
+        System.out.println("Level Order Traversal");
+        levelOrderTraversal(root);
+    }
+
+    static void levelOrderTraversal(Node rootNode) {
+        //step1 - first oka queue ni initialize cheyali node generic
+        //step2 - step1 lo create chesina queue ds lo input ga vochina root node ni add cheyali
+        //step3 - while loop tho queu anedhi empty no kadho cheak chesi oka vela empty kakapotey
+        //inside while loop ki enter avali
+        //step4 - remove method use chesi queue lo vunna first node ni remove cheyali
+        //print removed node data
+        //remove chesina node ki children vunnayo levo check cheyali, oka vela children vuntey, ah
+        //children ni queue lo add cheyali.
+
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(rootNode);
+
+        while (queue.size() > 0) {
+            Node removedNode = queue.remove();
+            System.out.print(removedNode.data + " ");
+            for (Node children : removedNode.children) {
+                queue.add(children);
+            }
+        }
     }
 
     static void treeTraversal(Node rootNode) {
