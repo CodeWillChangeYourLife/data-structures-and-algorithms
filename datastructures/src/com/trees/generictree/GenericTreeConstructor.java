@@ -36,10 +36,44 @@ public class GenericTreeConstructor {
         //Q6 Traverse the tree with pre node, post node , pre edge nodes and post edge nodes
         treeTraversal(root);
 
-
         //Q7 LevelOrder Traversal
         System.out.println("Level Order Traversal");
         levelOrderTraversal(root);
+        System.out.println();
+        //Q8 Line Wise Level order traversal
+        System.out.println("Level Order Line Wise Traversal");
+        levelOrderLineWiseTraversal(root);
+    }
+
+    static void levelOrderLineWiseTraversal(Node rootNode) {
+        //step1 - first two queue objects ni create cheyali generic vochesi <Node>
+        //step2 - manam create chesina q1 lo input ga vochna root node ni add cheyali
+        //step3 - while loop use chesi q1 object data anedi oka vela empty kakapotey apudu manam inside while loop ki enter avali
+        //manam q1 lo add chesina node ni remove cheyali, tarvata remove chesina node data ni print cheyali
+        //okavela remove chesina node ki kanuka children nodes vuntey apudu manam for each loop use chesi each children ni q2 lo add cheyali
+        //last ki while loop lo oka condition implement cheyali
+        // condition -> oka vela q1 size kanuka empty ayete or q1 size == 0 apudu mananm q2 object ni q1 ki assign cheyali
+        //tarvata malli q2 ki new object create cheyali
+        //final ga cursor ni new line ki point chese laga oka sop statement add cheyali
+
+        Queue<Node> q1 = new ArrayDeque<>();
+        Queue<Node> q2 = new ArrayDeque<>();
+
+        q1.add(rootNode);
+
+        while (q1.size() > 0) {
+            Node removedNode = q1.remove();
+            System.out.print(removedNode.data + " ");
+
+            for (Node child : removedNode.children) {
+                q2.add(child);
+            }
+            if (q1.isEmpty()) {
+                q1 = q2;
+                q2 = new ArrayDeque<>();
+                System.out.println();
+            }
+        }
     }
 
     static void levelOrderTraversal(Node rootNode) {
