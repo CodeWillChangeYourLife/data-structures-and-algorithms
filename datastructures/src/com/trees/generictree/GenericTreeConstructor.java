@@ -43,6 +43,46 @@ public class GenericTreeConstructor {
         //Q8 Line Wise Level order traversal
         System.out.println("Level Order Line Wise Traversal");
         levelOrderLineWiseTraversal(root);
+
+        //Q9 Zig Zag Traversal
+        System.out.println("Zig Zag Traversal");
+        zigZagTraversal(root);
+    }
+
+    static void zigZagTraversal(Node rootNode) {
+        //step1 - First two stacks objects create cheyali
+        //step2 - first stack object lo input ga vochina root node ni add cheyali
+        //step3 - while loop use chesi stack1 size zeero kantey ekkuva vunte in side while loop ki enter avali
+        //stack1 lo top node ni remove chesi, ah tarvet remove chesina node ki children vuntey , dependes on level
+        //stack2 lo ee chindren ni add cheyali
+        //oka vela level kanuka odd number ayete normal for each loop or level kanuka even number ayete apudu manam children ni
+        //right to left ki traverse chese stack 2 lo add cheyali
+        //step3 - condition check -> oka vela mana stack1 size kanuka  zeero ayetey apudu manam stack2 ni stack1 ki assign cheyali
+        //tarvata stack2 ki new object create cheyali
+
+        Stack<Node> s1 = new Stack<>();
+        Stack<Node> s2 = new Stack<>();
+        s1.push(rootNode);
+        int level = 1;
+        while (s1.size() > 0) {
+            Node removedNode = s1.pop();
+            System.out.print(removedNode.data + " ");
+            if (level % 2 != 0) {
+                for (Node child : removedNode.children) {
+                    s2.push(child);
+                }
+            } else {
+                for (int i = removedNode.children.size() - 1; i >= 0; i--) {
+                    s2.push(removedNode.children.get(i));
+                }
+            }
+            if (s1.size() == 0) {
+                s1 = s2;
+                s2 = new Stack<>();
+                level++;
+                System.out.println();
+            }
+        }
     }
 
     static void levelOrderLineWiseTraversal(Node rootNode) {
