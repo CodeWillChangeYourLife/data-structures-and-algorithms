@@ -47,7 +47,24 @@ public class GenericTreeConstructor {
         //Q9 Zig Zag Traversal
         System.out.println("Zig Zag Traversal");
         zigZagTraversal(root);
+
+        //Q10 Remove Leaf from the tree
+        removeLeafNodes(root);
+        levelOrderLineWiseTraversal(root);
     }
+
+    static void removeLeafNodes(Node rootNode) {
+        for (int i = rootNode.children.size() - 1; i >= 0; i--) {
+            Node node = rootNode.children.get(i);
+            if (node.children.size() == 0) {
+                rootNode.children.remove(node);
+            }
+        }
+        for (Node child : rootNode.children) {
+            removeLeafNodes(child);
+        }
+    }
+
 
     static void zigZagTraversal(Node rootNode) {
         //step1 - First two stacks objects create cheyali
