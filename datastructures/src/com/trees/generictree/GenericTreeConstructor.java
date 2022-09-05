@@ -49,8 +49,25 @@ public class GenericTreeConstructor {
         zigZagTraversal(root);
 
         //Q10 Remove Leaf from the tree
-        removeLeafNodes(root);
+        //removeLeafNodes(root);
         levelOrderLineWiseTraversal(root);
+
+        //Q11 Search Node in a Tree
+        boolean result = searchNodeInTree(root, 800);
+        System.out.println(800 + " Node exist in Tree ? :" + result);
+    }
+
+    static boolean searchNodeInTree(Node rootNode, int data) {
+        if (rootNode.data == data) {
+            return true;
+        }
+        for (Node child : rootNode.children) {
+            boolean result = searchNodeInTree(child, data);
+            if (result) {
+                return true;
+            }
+        }
+        return false;
     }
 
     static void removeLeafNodes(Node rootNode) {
