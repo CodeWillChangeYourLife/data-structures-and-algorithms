@@ -55,6 +55,28 @@ public class GenericTreeConstructor {
         //Q11 Search Node in a Tree
         boolean result = searchNodeInTree(root, 800);
         System.out.println(800 + " Node exist in Tree ? :" + result);
+        int nodeData = 80;
+        List<Integer> list = nodeToRootPath(root, nodeData);
+        System.out.println("Node to Root Path");
+        for(int i:list){
+            System.out.print(i+" ");
+        }
+    }
+
+    static List<Integer> nodeToRootPath(Node rootNode, int data) {
+        if (rootNode.data == data) {
+            List<Integer> list = new ArrayList<>();
+            list.add(rootNode.data);
+            return list;
+        }
+        for (Node child : rootNode.children) {
+            List<Integer> result = nodeToRootPath(child, data);
+            if (result.size() > 0) {
+                result.add(rootNode.data);
+                return result;
+            }
+        }
+        return new ArrayList<>();
     }
 
     static boolean searchNodeInTree(Node rootNode, int data) {
