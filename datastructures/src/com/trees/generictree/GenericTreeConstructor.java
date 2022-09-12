@@ -1,7 +1,5 @@
 package com.trees.generictree;
 
-import com.customcollection.MyQueue;
-
 import java.util.*;
 
 public class GenericTreeConstructor {
@@ -13,11 +11,20 @@ public class GenericTreeConstructor {
 
     public static void main(String[] args) {
         int data;
-        int[] arr = {10, 20, 50, -1, 90, -1, -1, 30, 70, -1, 80, -1, -1, 40, 60, -1, -1, -1};
+        int[] arr1 = {10, 20, 50, -1, 90, -1, -1, 30, 70, -1, 80, -1, -1, 40, 60, -1, -1, -1};
+        int[] arr2 = {10, 20, 50, -1, 90, 200, -1, 300, -1, -1, -1, 30, 70, -1, 80, -1, -1, 40, 60, -1, -1, -1};
+        int[] arr3 = {10, 20, 50, -1, 90, -1, -1, 30, 70, -1, 80, -1, -1, 40, 60, -1, -1, -1};
         Node root = null;
+        Node tree2 = null;
+        Node tree3 = null;
         //Q1 Construct Generic Tree from the input array data
-        root = constructTree(arr, root);
+        root = constructTree(arr1, root);
+        tree2 = constructTree(arr2, tree2);
+        tree3 = constructTree(arr3, tree3);
 
+        System.out.println("Display Tree 2");
+        displayTree(tree2);
+        System.out.println("--------------");
         //Q2 Display a Constructed Generic Tree
         displayTree(root);
 
@@ -34,7 +41,7 @@ public class GenericTreeConstructor {
         System.out.println("Tree Height : " + treeHeight);
 
         //Q6 Traverse the tree with pre node, post node , pre edge nodes and post edge nodes
-        treeTraversal(root);
+        treeTraversalWithPreAndPostNodes(root);
 
         //Q7 LevelOrder Traversal
         System.out.println("Level Order Traversal");
@@ -58,10 +65,72 @@ public class GenericTreeConstructor {
         int nodeData = 80;
         List<Integer> list = nodeToRootPath(root, nodeData);
         System.out.println("Node to Root Path");
-        for(int i:list){
-            System.out.print(i+" ");
+        for (int i : list) {
+            System.out.print(i + " ");
         }
+        System.out.println();
+        //Q13 - The Lowest common ancestor for given two nodes
+        lowestCommonAncestor(tree2, 50, 300);
+
+
+        int distance = distanceBetweenTwoNodes(root, 90, 80);
+        System.out.println(distance);
+
+        boolean treesAreSame = twoTreesSimilarInShape(root, tree3);
+        System.out.println("tress are same :" + treesAreSame);
     }
+
+
+    static void lowestCommonAncestor(Node rootNode, int data1, int data2) {
+
+        List<Integer> list1 = nodeToRootPath(rootNode, data1);
+        List<Integer> list2 = nodeToRootPath(rootNode, data2);
+
+        int i = list1.size() - 1;
+        int j = list2.size() - 1;
+
+        while (i >= 0 && j >= 0 && list1.get(i) == list2.get(j)) {
+            i--;
+            j--;
+        }
+        i++;
+        j++;
+        System.out.println("Lowest common ancestor for given data1 " + data1 + " and " + data2 + " :" + list1.get(i));
+    }
+
+    static boolean twoTreesSimilarInShape(Node tree1, Node tree2) {
+        if (tree1 == null || tree2 == null) {
+            return false;
+        }
+        if (tree1.children.size() != tree2.children.size()) {
+            return false;
+        }
+        for (int i = 0; i < tree1.children.size(); i++) {
+            Node c1 = tree1.children.get(i);
+            Node c2 = tree2.children.get(i);
+            if (twoTreesSimilarInShape(c1, c2) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static int distanceBetweenTwoNodes(Node rootNode, int data1, int data2) {
+
+        List<Integer> list1 = nodeToRootPath(rootNode, data1);
+        List<Integer> list2 = nodeToRootPath(rootNode, data2);
+
+        int i = 0;
+        int j = 0;
+        while (i < list1.size() && j < list2.size() && list1.get(i) != list2.get(j)) {
+            list1.remove(i);
+            list2.remove(j);
+            i++;
+            j++;
+        }
+        return list1.size() + list2.size();
+    }
+
 
     static List<Integer> nodeToRootPath(Node rootNode, int data) {
         if (rootNode.data == data) {
@@ -194,11 +263,11 @@ public class GenericTreeConstructor {
         }
     }
 
-    static void treeTraversal(Node rootNode) {
+    static void treeTraversalWithPreAndPostNodes(Node rootNode) {
         System.out.println("pre node : " + rootNode.data);
         for (Node child : rootNode.children) {
             System.out.println("pre edge nodes : " + rootNode.data + "-->" + child.data);
-            treeTraversal(child);
+            treeTraversalWithPreAndPostNodes(child);
             System.out.println("post egde nodes :" + child.data + "-->" + rootNode.data);
         }
         System.out.println("post node : " + rootNode.data);
