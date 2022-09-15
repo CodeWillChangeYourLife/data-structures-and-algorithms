@@ -72,14 +72,29 @@ public class GenericTreeConstructor {
         //Q13 - The Lowest common ancestor for given two nodes
         lowestCommonAncestor(tree2, 50, 300);
 
-
-        int distance = distanceBetweenTwoNodes(root, 90, 80);
-        System.out.println(distance);
+        //Q14 - Distance between two nodes
+        int distance = distanceBetweenTwoNodes(root, 50, 60);
+        System.out.println("Distance between two nodes "+distance);
 
         boolean treesAreSame = twoTreesSimilarInShape(root, tree3);
         System.out.println("tress are same :" + treesAreSame);
     }
 
+    static int distanceBetweenTwoNodes(Node rootNode, int data1, int data2) {
+        List<Integer> list1 = nodeToRootPath(rootNode, data1);
+        List<Integer> list2 = nodeToRootPath(rootNode, data2);
+
+        int p1 = list1.size() - 1;
+        int p2 = list2.size() - 1;
+
+        while (p1 >= 0 && p2 >= 0 && list1.get(p1) == list2.get(p2)) {
+            list1.remove(p1);
+            list2.remove(p2);
+            p1--;
+            p2--;
+        }
+        return list1.size() + list2.size();
+    }
 
     static void lowestCommonAncestor(Node rootNode, int data1, int data2) {
 
@@ -114,23 +129,6 @@ public class GenericTreeConstructor {
         }
         return true;
     }
-
-    static int distanceBetweenTwoNodes(Node rootNode, int data1, int data2) {
-
-        List<Integer> list1 = nodeToRootPath(rootNode, data1);
-        List<Integer> list2 = nodeToRootPath(rootNode, data2);
-
-        int i = 0;
-        int j = 0;
-        while (i < list1.size() && j < list2.size() && list1.get(i) != list2.get(j)) {
-            list1.remove(i);
-            list2.remove(j);
-            i++;
-            j++;
-        }
-        return list1.size() + list2.size();
-    }
-
 
     static List<Integer> nodeToRootPath(Node rootNode, int data) {
         if (rootNode.data == data) {
