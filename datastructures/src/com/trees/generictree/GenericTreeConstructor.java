@@ -74,10 +74,29 @@ public class GenericTreeConstructor {
 
         //Q14 - Distance between two nodes
         int distance = distanceBetweenTwoNodes(root, 50, 60);
-        System.out.println("Distance between two nodes "+distance);
+        System.out.println("Distance between two nodes " + distance);
 
-        boolean treesAreSame = twoTreesSimilarInShape(root, tree3);
+        //Q15 - Two trees similar in shape or not
+        boolean treesAreSame = twoTreesSimilarInShape(root, tree2);
         System.out.println("tress are same :" + treesAreSame);
+    }
+
+
+    static boolean twoTreesSimilarInShape(Node tree1, Node tree2) {
+        if (tree1 == null || tree2 == null) {
+            return false;
+        } else if (tree1.children.size() != tree2.children.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < tree1.children.size(); i++) {
+            Node c1 = tree1.children.get(i);
+            Node c2 = tree2.children.get(i);
+            if (twoTreesSimilarInShape(c1, c2) == false) {
+                return false;
+            }
+        }
+        return true;
     }
 
     static int distanceBetweenTwoNodes(Node rootNode, int data1, int data2) {
@@ -113,22 +132,6 @@ public class GenericTreeConstructor {
         System.out.println("Lowest common ancestor for given data1 " + data1 + " and " + data2 + " :" + list1.get(i));
     }
 
-    static boolean twoTreesSimilarInShape(Node tree1, Node tree2) {
-        if (tree1 == null || tree2 == null) {
-            return false;
-        }
-        if (tree1.children.size() != tree2.children.size()) {
-            return false;
-        }
-        for (int i = 0; i < tree1.children.size(); i++) {
-            Node c1 = tree1.children.get(i);
-            Node c2 = tree2.children.get(i);
-            if (twoTreesSimilarInShape(c1, c2) == false) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     static List<Integer> nodeToRootPath(Node rootNode, int data) {
         if (rootNode.data == data) {
