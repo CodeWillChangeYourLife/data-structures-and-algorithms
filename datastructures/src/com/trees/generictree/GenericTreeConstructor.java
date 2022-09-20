@@ -83,6 +83,36 @@ public class GenericTreeConstructor {
         //Q16 జావా లో టూ trees same in mirror ela find cheyali ?
         boolean treesMirror = twoTreesSameInMirror(tree1, tree3);
         System.out.println("Two Trees mirror in shape :" + treesMirror);
+        //Q16 జావా లో  oka particular node ki predecessor and successor ela find cheyali?
+        findPredecessorAndSuccessor(tree1, 90);
+    }
+
+    static int pred;
+    static int succ;
+    static boolean flag = false;
+
+    static void findPredecessorAndSuccessor(Node rootNode, int data) {
+
+        if (flag == false) {
+            if (rootNode.data == data) {
+                flag = true;
+            } else {
+                pred = rootNode.data;
+            }
+        } else if (flag == true && succ == 0) {
+            succ = rootNode.data;
+            return;
+        }
+
+        for (Node child : rootNode.children) {
+            findPredecessorAndSuccessor(child, data);
+        }
+
+        if (flag) {
+            System.out.println("pred :" + pred);
+            System.out.println("data :" + data);
+            System.out.println("succ :" + succ);
+        }
     }
 
     static boolean twoTreesSameInMirror(Node tree1, Node tree2) {
