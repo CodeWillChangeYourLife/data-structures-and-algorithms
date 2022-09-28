@@ -27,6 +27,7 @@ public class BinaryTree {
         Integer[] data = {10, 20, 40, null, null, 50, 60, null, null, null, 30, 70, null, 90, null, null, 80, null, null};
         Node root = null;
         //Q1- జావా లో బైనరీ ట్రీ  ఎలా బిల్డ్ చేయాలి ALGORITHM CODE
+        // Java lo Binary tree construction ALGORITHM CODE
         root = constructBinaryTree(data);
         System.out.println(root.data);
 
