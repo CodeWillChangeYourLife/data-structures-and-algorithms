@@ -30,33 +30,24 @@ public class BinaryTree {
         // Java lo Binary tree construction ALGORITHM CODE
         root = constructBinaryTree(data);
         System.out.println(root.data);
-
+        // Q2 display Binary Tree
+        displayBinaryTree(root);
     }
-    //Algorithm STeps:
-   // ae algorithm lo ayina sare first manake kavalsina variables ni algorithm starting lo declare chesukovali.
-   // E algorithm lo naku oka rootNode , node, pair, stack of pairs  alage oka pointer array elements read cheyadaniki
-   // kavali so vatini step1 lo declare chesa.
-   // second step lo manaki input ga vochina array lo oth index lo vunna value ni read chesi node object create chesi
-   // danini rootnode ki assign chesa,
-   // tarvata pair object create chesi andhulo manam create chesina root node alage state 1
 
-    //step2 final vochi ee pair ni stack pairs object lo push cheyali
+    static void displayBinaryTree(Node rootNode) {
+        if (rootNode == null) {
+            return;
+        }
+        String str = "";
+        str = rootNode.leftNode == null ? "null" : rootNode.leftNode.data + "";
+        str = str + ("<--" + rootNode.data + "<--");
+        str = str + (rootNode.rightNode == null ? "null" : rootNode.rightNode.data + "");
+        System.out.println(str);
 
-    //Step3 vochi main algorithm , endhulo manam oka while loop tisukovali condition vochesi ,
-    // mana stack size anedhi zeero ayyevaraku loop continue cheyali epudite stack size zeero avudho
-    // apudu manam loop nunchi exit avali
+        displayBinaryTree(rootNode.leftNode);
+        displayBinaryTree(rootNode.rightNode);
+    }
 
-    //Step4 lo actual algorithm logic implement cheyali
-    //First manam stack lo vunna top pair ni get cgesukoni ah pair state basic 3 vuntaye state1, state2, state3.
-    //state1 ayete epudu manam input array data read cheyali
-    //read chesina tarvuta ah data kanuka null kakapotey apudu manam node create cheyali ee data tho,
-    // tarvata ee node ni mana toppair lo vunna node ki left node ga mana new node ni add chestam tarvata
-    // oka new pair object create chesi, ah pair lo e new node ni state 1 ga add chesi , pairs stack lo push cheyeli,
-    // else data null ayete apudu top pair node ki left lo null add cheyali, final ga top pair state ni
-    // 1 increment cheyali endhukantey next voche node top node ki right lo matramey add avali kabatti
-    //oka vela state 2 ayete state1 lo lage same process kakapotey epudu toppair node ki right side add
-    // cheyali either node or null.
-    //FInal ga state kanuka 3 ayete apudu manam pairs stack lo top pair no remove cheyali pairs.pop() method call chesi.
     static Node constructBinaryTree(Integer[] inputArray) {
         //Step1
         Node rootNode = null;
@@ -72,8 +63,9 @@ public class BinaryTree {
         while (pairs.size() > 0) {
             //step4
             Pair topPair = pairs.peek();
-            index++;
+
             if (topPair.state == 1) {
+                index++;
                 if (inputArray[index] != null) {
                     node = new Node(inputArray[index]);
                     topPair.node.leftNode = node;
@@ -84,6 +76,7 @@ public class BinaryTree {
                 }
                 topPair.state++;
             } else if (topPair.state == 2) {
+                index++;
                 if (inputArray[index] != null) {
                     node = new Node(inputArray[index]);
                     topPair.node.rightNode = node;
